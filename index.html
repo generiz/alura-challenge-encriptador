@@ -31,6 +31,10 @@
             <p>Ingresa el texto que desees encriptar o desencriptar.</p>
             </div>
         </div>
+        <div id="mensajeMunheco2">
+            <p>Ningún mensaje fue encontrado</p>
+            <p>Ingresa el texto que desees encriptar o desencriptar.</p>
+            </div>
         <div>
             <textarea disabled id="resultado" cols="30" rows="10"></textarea>
          </div>
@@ -50,6 +54,7 @@
 
 <script>
     var input = document.querySelector("input");  
+    var mensajeMunheco2 = document.getElementById("mensajeMunheco2") 
     var resultadoParaCopiar = resultado.value
     var encriptado = true; //flag para saber si encripta o descripta
      //para copiar
@@ -164,6 +169,8 @@
 
             
             input.setAttribute("disabled", "");
+
+            mensajeMunheco2.style.display = "none"
         
     }
     function recargar () {
