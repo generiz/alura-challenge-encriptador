@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Encriptador</title>
+        <link rel="stylesheet" href="reset.css">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <h1><img src="imagenes/logo.png" alt="Logo de Alura"></h1>
+        </header>
+    </body>
+    <main>
+            <input class ="inputInicio" type="text" onkeypress="return check(event)" placeholder="Ingrese el texto aqui">
+            <p id="advertencia">Solo se admiten letras minúsculas y sin acentos</p>
+        <div class="botones">  
+            <button class="boton1" onclick="tareas()">Encriptar</button>
+            <button class="boton2" onclick="desencriptar()">Desencriptar</button>
+        </div>
+        <div id="rectangulo"></div>
+        <div id="munheco">
+            <img src="imagenes/muñeco.jpg" alt="muñeco">
+            <p>Ningún mensaje fue encontrado</p>
+            <p>Ingresa el texto que desees encriptar o desencriptar.</p>
+        </div>
+        <div>
+            <textarea disabled id="resultado" cols="30" rows="10"></textarea>
+         </div>
+        <div class="botones-secundarios">
+            <button id="copy" onclick="copiar()">copiar</button>
+            <button id="recarga" onclick="recargar()">OK!</button>
+        </div>
+    </main>
+    <footer>
+        <p class="copyright">Copyright Nicolas Pintos 2022</p>
+    </footer>
+ 
+    
+</html>
+
+
+<script>
+    var input = document.querySelector("input");  
+    var resultadoParaCopiar = resultado.value
+    var encriptado = true; //flag para saber si encripta o descripta
+     //para copiar
+    input.focus();
+    document.getElementById('resultado').style.visibility = "hidden";
+    window.onload=ocultar;
+
+    function ocultar(){
+        document.getElementById('recarga').style.display = 'none';
+        document.getElementById('copy').style.display = 'none';
+    }
+
+   
+    //funcion de control evitar mayusculas - caracteres especiales 
+   function check(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+
+        //Tecla borrar
+        if (tecla == 8) {
+            return true;
+        }
+        //ahora si funciona el espacio
+        if(tecla == 32){
+            return true;
+        }
+
+        // Patrón de entrada, en este caso solo acepta numeros y letras
+        patron = /[a-z0-9]/;
+        tecla_final = String.fromCharCode(tecla);
+        return patron.test(tecla_final);
+    }
+
+
+  
+    function desencriptar(){
+        encriptado = false
+        tareas()
+    }
+
+   
+    function tareas(){
+        var resultados = input.value;
+        // lo que hacemos en pasarle una función al replace() en lugar de una cadena (string), y en dicha función se ejecuta el return del valor de la propiedad coincidente del objeto encriptador (que encerramos mediante corchetes para su correcta interpretación durante su ejecución) por cada una de las coincidencias de la expresión regular.
+        if(encriptado == true){
+            
+            var encriptador = {
+            e:"enter",
+            i:"imes",
+            a:"ai",
+            o:"ober",
+            u:"ufat"
+
+            };
+            resultados = resultados.replace(/e|i|a|o|u/g, function(matched){
+            return encriptador[matched];
+        });
+        } else{
+            var encriptador = {
+            enter:"e",
+            imes:"i",
+            ai:"a",
+            ober:"o",
+            ufat:"u"
+
+            };
+            resultados = resultados.replace(/enter|imes|ai|ober|ufat/g, function(matched){
+            return encriptador[matched];
+        });
+    }
+
+        //test desaparecer munheco
+        var x = document.getElementById("munheco");
+       
+        document.getElementById('resultado').style.visibility = "hidden";
+        if (x.style.display === 'none') {
+            x.style.display = 'block';
+            }
+            else {
+                x.style.display = 'none';
+                
+                document.getElementById('resultado').style.visibility = "visible";
+
+                document.getElementById("resultado").innerHTML = resultados;
+
+                document.getElementById('recarga').style.display = 'inline';
+                document.getElementById('copy').style.display = 'inline';
+
+
+                input.value = "";
+                recarga.focus();
+            }
+            //Se desabilitan los botones para 
+            var boton1 = document.querySelector(".boton1");
+
+            boton1.setAttribute("disabled", "");
+            var boton2 = document.querySelector(".boton2");
+
+            boton2.setAttribute("disabled", "");
+            
+        
+    }
+    function recargar () {
+            window.location.href = window.location.href;
+        }
+        //aqui empence a ver el boton de copiar lo que contenga el textarea
+    function copiar() {
+    
+        var textoACopiar = document.getElementById('resultado');
+        var seleccion = document.createRange();
+        seleccion.selectNodeContents(textoACopiar);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(seleccion);
+        var res = document.execCommand('copy');
+        window.getSelection().removeRange(seleccion);
+        recarga.focus();
+        alert ('Copiado!');
+        
+       
+}
+</script>
