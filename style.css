@@ -8,10 +8,7 @@ header{
     padding: auto;
     margin: 16px 0px 20px 68px;
 }
-main{
-  font-size: large;
-  font-weight: bold;
-}
+
 
 .inputInicio{  
   width: 577px;
@@ -163,8 +160,8 @@ transition: 100ms;
     height: 40%;
     left: 814px;
     top: 60px;
-    
   }
+  
  
   #resultado{
     resize: none;
