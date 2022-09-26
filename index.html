@@ -85,7 +85,7 @@
         encriptado = false
         if(i == ''){
             alert('Debe de ingresar el texto')
-            return;
+            return
         }
         else{
         tareas()
@@ -149,7 +149,7 @@
                 document.getElementById('copy').style.display = 'inline';
 
 
-                input.value = "";
+                
                 recarga.focus();
             }
             //Se desabilitan los botones para 
@@ -159,6 +159,7 @@
             var boton2 = document.querySelector(".boton2");
 
             boton2.setAttribute("disabled", "");
+            input.setAttribute("disabled", "");
             
         
     }
