@@ -174,6 +174,10 @@ transition: 100ms;
     height: 40%;
     left: 814px;
     top: 60px;
+    font-family: 'inter';
+    font-size: 32PX;
+    color: #0A3871;
+    border-style: none;
     
   }
   footer{
