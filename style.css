@@ -230,8 +230,10 @@ transition: 100ms;
   .inputInicio{
       width: 100%;
       margin-top: 100px;
+     text-transform: initial;
       left: 0px;
-      padding: 0px;
+      padding: 0px
+      
       
   }
   #advertencia{
